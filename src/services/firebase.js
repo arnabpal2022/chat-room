@@ -31,11 +31,24 @@ const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 const db = getFirestore(app);
 
+/**
+ * The function `loginWithGoogle` allows a user to log in with their Google account and returns the
+ * user's unique ID and display name.
+ * @returns an object with the properties `uid` and `displayName` if the login with Google is
+ * successful. If there is an error, it will return `null`.
+ */
 async function loginWithGoogle() {
   try {
     const provider = new GoogleAuthProvider();
+
+    /* The line `const auth = getAuth();` is initializing the Firebase Authentication service. It
+    creates an instance of the `Auth` class, which is used to authenticate users and manage user
+    sessions. This instance is stored in the `auth` variable for later use in the code. */
     const auth = getAuth();
 
+    /* The line `const { user } = await signInWithPopup(auth, provider);` is using the
+    `signInWithPopup` function from the Firebase Authentication library to authenticate the user
+    with their Google account. */
     const { user } = await signInWithPopup(auth, provider);
 
     return { uid: user.uid, displayName: user.displayName };

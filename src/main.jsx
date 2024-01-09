@@ -34,6 +34,7 @@ function UnauthenticatedApp() {
       <button type="button" class="login-with-google-btn bg-blue-50 border-black border-2 text-blue-950" onClick={login}>
         Sign in with Google
       </button>
+      <div class="text-center mt-10">Made by Arnab. Copyright © {new Date().getFullYear()}, All Rights Reserved</div>
     </div>
   );
 }

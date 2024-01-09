@@ -17,7 +17,7 @@ function MessageInput({roomId}){
     }
 
     return (
-        <form onSubmit={handleSubmit} className="message-input-container">
+        <form onSubmit={handleSubmit} className="message-input-container m-2">
             <input
                 type="text"
                 placeholder="Enter a message"
