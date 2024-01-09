@@ -3,6 +3,7 @@ import { chatRooms } from "./data/chatRooms";
 import "./App.css";
 import { MessageInput } from "./MessageInput";
 import { MessageList } from "./MessageList";
+// import ButtonSignOut from "./signout";
 
 function Chatroom(){
     const params = useParams()
@@ -30,6 +31,8 @@ function Chatroom(){
                 <MessageList roomId = {room.id}/>
                 <MessageInput roomId = {room.id}/>
             </div>
+
+            {/* <ButtonSignOut/> */}
         </div>
     )
 }

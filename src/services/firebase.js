@@ -1,6 +1,12 @@
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
-import { GoogleAuthProvider, signInWithPopup, getAuth } from "firebase/auth";
+import {
+  GoogleAuthProvider,
+  signInWithPopup,
+  getAuth,
+  signOut,
+} from "firebase/auth";
+import { useNavigate } from "react-router-dom";
 import {
   getFirestore,
   collection,
@@ -9,7 +15,7 @@ import {
   onSnapshot,
   query,
   orderBy,
-} from 'firebase/firestore';
+} from "firebase/firestore";
 
 const firebaseConfig = {
   apiKey: "AIzaSyDqHEGaqM0L_lrq3Wrz_dbzOAHSaiYn_XM",
@@ -57,18 +63,32 @@ async function sendMessage(roomId, user, text) {
 
 function getMessages(roomId, callback) {
   return onSnapshot(
-      query(
-          collection(db, 'chat-rooms', roomId, 'messages'),
-          orderBy('timestamp', 'asc')
-      ),
-      (querySnapshot) => {
-          const messages = querySnapshot.docs.map((doc) => ({
-              id: doc.id,
-              ...doc.data(),
-          }));
-          callback(messages);
-      }
+    query(
+      collection(db, "chat-rooms", roomId, "messages"),
+      orderBy("timestamp", "asc")
+    ),
+    (querySnapshot) => {
+      const messages = querySnapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      }));
+      callback(messages);
+    }
   );
 }
 
-export { loginWithGoogle, sendMessage, getMessages };
+// const navigate = useNavigate();
+
+// const handleLogout = () => {
+//   signOut(auth)
+//     .then(() => {
+//       // Sign-out successful.
+//       navigate("/");
+//       console.log("Signed out successfully");
+//     })
+//     .catch((error) => {
+//       alert("Try Again");
+//     });
+// };
+
+export { loginWithGoogle, sendMessage, getMessages};
